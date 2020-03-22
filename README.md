@@ -11,5 +11,8 @@ https://arduino.stackexchange.com/questions/45175/compilation-error-in-nodemcu-a
 all in one
 https://randomnerdtutorials.com/esp8266-ds18b20-temperature-sensor-web-server-with-arduino-ide/
 
+this one is working better for server/web part
+https://randomnerdtutorials.com/esp8266-dht11dht22-temperature-and-humidity-web-server-with-arduino-ide/
+
 weirdly "#define ONE_WIRE_BUS 2 " is corresponds to D4 digital pin...
 make sure you install the latest version of oneWire through arduino IDE.
