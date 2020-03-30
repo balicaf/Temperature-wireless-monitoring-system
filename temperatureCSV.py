@@ -2,16 +2,17 @@
 from bs4 import BeautifulSoup as BS
 import csv
 import datetime
+import time
 from urllib.request import urlopen
 try:
 	while True:
 		html = urlopen("http://192.168.0.50")
-		soup = BS(html)
+		soup = BS(html,features="html.parser")
 		elem = soup.findAll('p')
 		essai = elem[0].text.splitlines()
 		#essai[3]
 		html2 = urlopen("http://192.168.0.49", timeout=3)
-		soup2 = BS(html2)
+		soup2 = BS(html2,features="html.parser")
 		elem2 = soup2.findAll('p')
 		essai2 = elem2[0].text.splitlines()
 		#essai2[3]
