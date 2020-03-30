@@ -1,0 +1,29 @@
+#sudo pip3 install BeautifulSoup4
+from bs4 import BeautifulSoup as BS
+import csv
+import datetime
+from urllib.request import urlopen
+try:
+	while True:
+		html = urlopen("http://192.168.0.50")
+		soup = BS(html)
+		elem = soup.findAll('p')
+		essai = elem[0].text.splitlines()
+		#essai[3]
+		html2 = urlopen("http://192.168.0.49", timeout=3)
+		soup2 = BS(html2)
+		elem2 = soup2.findAll('p')
+		essai2 = elem2[0].text.splitlines()
+		#essai2[3]
+		filename = "/Users/racinecubix/Documents/temperature.csv"
+		with open(filename, "a", newline="") as csvfile:
+			csvwriter = csv.writer(csvfile,  delimiter=',')
+			csvwriter.writerow([datetime.datetime.now(),essai[3],essai2[3]])
+			time.sleep(9.9277)
+except KeyboardInterrupt:
+	print("KeyboardInterrupt has been caught.")
+
+
+
+
+
