@@ -4,9 +4,11 @@ import csv
 import datetime
 import time
 from urllib.request import urlopen
+import http.client
+
 while True:
 	try:
-		html = urlopen("http://192.168.0.50")
+		html = urlopen("http://192.168.0.50", timeout=3)
 		soup = BS(html,features="html.parser")
 		elem = soup.findAll('p')
 		essai = elem[0].text.splitlines()
@@ -21,10 +23,13 @@ while True:
 			csvwriter = csv.writer(csvfile,  delimiter=',')
 			csvwriter.writerow([datetime.datetime.now(),essai[3],essai2[3]])
 			#time.sleep(9.9277)
-	except KeyboardInterrupt:
+	except (KeyboardInterrupt, SystemExit):
 		print("KeyboardInterrupt has been caught.")
-	except (http.client.IncompleteRead)	:
-		print("IncompleteRead")
+	#except (http.client.IncompleteRead)	:#HTTPConnection
+	except Exception as e:
+		print(str(e), datetime.datetime.now())
+		time.sleep(9.9277)#just to be sure it won't reproduce
+		pass
 	time.sleep(9.9277)
 
 
